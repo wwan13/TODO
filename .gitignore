@@ -365,4 +365,4 @@ pip-selfcheck.json
 
 
 ### python virtual environment ###
-Back-End/venv/
+venv/
