@@ -2,6 +2,7 @@ import React from 'react'
 import './Contents.css'
 import SortNav from '../sortNav/SortNav'
 import TodoObject from '../todoObject/TodoObject'
+import AddButton from '../addButton/AddButton'
 
 
 function Todo() {
@@ -17,10 +18,10 @@ function Todo() {
                 <TodoObject />
                 <TodoObject />
             </div>
+            <AddButton />
         </div>
     );
 }
-
 
 function Contents() {
 
