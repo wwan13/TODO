@@ -1,0 +1,9 @@
+.entire-wrap {
+    width: 100%;
+    height: 100%;
+    background-color: #414141;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

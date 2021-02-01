@@ -1,0 +1,13 @@
+.object-box {
+    width: 540px;
+    height: 80px;
+    background-color: #d5d5d5;
+    margin: 20px 0px 20px 5px;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.object-box:hover {
+    box-shadow: 1px 3px 6px gray;
+    transform: translate(0%, -5%);
+}

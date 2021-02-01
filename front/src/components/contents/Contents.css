@@ -1,0 +1,17 @@
+.contents-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 550px;
+}
+
+.todo-box {
+    width: 550px;
+    height: 510px;
+    justify-content: center;
+    overflow: auto;
+}
+
+.todo-box::-webkit-scrollbar {
+    display: none;
+}

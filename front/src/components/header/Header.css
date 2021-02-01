@@ -1,0 +1,26 @@
+.title-wrapper {
+    width: 600px;
+    height: 45px;
+    margin-bottom: 20px;
+    font-weight: Bold;
+    color: #b2b2b2;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: Bold;
+    cursor: pointer;
+}
+
+.user-info {
+    font-size: 25px;
+    margin-left: 20px;
+    color: #b2b2b2;
+    cursor: pointer;
+}
+
+.logout-button {
+    font-size: 25px;
+    color: #b2b2b2;
+    margin-left: 220px;
+}

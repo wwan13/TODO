@@ -1,17 +1,10 @@
 import React from 'react'
+import './Main.css'
 
 function Main({ children }) {
 
-    const mainContents = {
-        width: '600px',
-        height: '670px',
-        backgroundColor: '#b2b2b2',
-        borderRadius: '10px',
-    }
-
-
     return (
-        <div style={mainContents}>
+        <div className='main-contents'>
             {children}
         </div>
     );
