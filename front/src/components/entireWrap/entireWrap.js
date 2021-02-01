@@ -1,12 +1,22 @@
 import React from 'react';
-import './entireWrap.css';
+// import './EntireWrap.css';
 
-function entireWrap({ children }) {
+function EntireWrap({ children }) {
+
+    const style = {
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#414141',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    };
+
     return (
-        <div className='entire-wrap'>
+        <div style={style}>
             {children}
         </div>
     );
 }
 
-export default entireWrap;
+export default EntireWrap;    
