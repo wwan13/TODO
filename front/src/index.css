@@ -11,3 +11,7 @@
   height: 100%;
   text-decoration: none;
 }
+
+body {
+  min-width: 600px;
+}
