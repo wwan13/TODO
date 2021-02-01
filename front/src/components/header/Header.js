@@ -4,7 +4,7 @@ function Header({ children }) {
     const wrapper = {
         width: '600px',
         height: '45px',
-        marginBottom: '40px',
+        marginBottom: '20px',
         fontWeight: 'Bold',
         color: '#b2b2b2',
     }
