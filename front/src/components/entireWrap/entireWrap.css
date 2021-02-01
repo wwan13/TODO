@@ -1,0 +1,9 @@
+html, body, #app, #app>div {
+    height: 100%
+  }
+
+.entire-wrap {
+    width: 100%;
+    height: 100%;
+    background-color: #414141;
+}
