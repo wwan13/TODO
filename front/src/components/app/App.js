@@ -1,10 +1,12 @@
-import entireWrap from '../entireWrap/entireWrap'
+import EntireWrap from '../entireWrap/EntireWrap'
+import Header from '../header/Header'
 
 function App() {
   return (
     <>
-      <entireWrap>
-      </entireWrap>
+      <EntireWrap>
+        <Header />
+      </EntireWrap>
     </>
   );
 }
