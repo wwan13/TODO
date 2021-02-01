@@ -10,6 +10,7 @@ function EntireWrap({ children }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'column',
     };
 
     return (
