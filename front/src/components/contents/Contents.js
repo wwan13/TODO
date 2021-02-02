@@ -73,10 +73,6 @@ function Signin() {
 }
 
 function CreateContents() {
-
-    var today = new Date();
-
-
     return (
         <form action="#" method="post" className="form">
             <InputBox type="date" name="date" />
