@@ -12,9 +12,13 @@
 }
 
 .nav-bar-text {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     margin-left: 7px;
     color: #414141;
     transition: .4s;
+}
+
+.nav-bar-text:hover {
+    color: #d5d5d5
 }
