@@ -26,14 +26,21 @@
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 5px;
-    color: #414141;
 }
 
 .contents-detail {
     height: 30px;
     font-size: 20px;
     font-weight: 600;
+}
+
+.ongoing {
     color: #414141;
+}
+
+.complete {
+    color: #b2b2b2;
+    text-decoration: line-through; 
 }
 
 .object-buttons {
