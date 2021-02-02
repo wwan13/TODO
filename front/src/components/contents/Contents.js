@@ -3,6 +3,8 @@ import './Contents.css'
 import SortNav from '../sortNav/SortNav'
 import TodoObject from '../todoObject/TodoObject'
 import AddButton from '../addButton/AddButton'
+import InputBox from '../inputBox/InputBox'
+import SubmitButton from '../inputBox/SubmitButton'
 
 
 function Todo() {
@@ -48,11 +50,47 @@ function Todo() {
     );
 }
 
-function Contents() {
-
+function Login() {
     return (
-        <Todo />
+        <form action="#" method="post" className="form">
+            <InputBox type="text" placeholder="아이디" name="id" />
+            <InputBox type="password" placeholder="비밀번호" name="password" />
+            <SubmitButton type="submit" value="로그인" />
+        </form>
     );
 }
 
-export default Contents;
+function Signin() {
+    return (
+        <form action="#" method="post" className="form">
+            <InputBox type="text" placeholder="이름" name="username" />
+            <InputBox type="text" placeholder="아이디" name="id" />
+            <InputBox type="password" placeholder="비밀번호" name="password" />
+            <InputBox type="password" placeholder="비밀번호 확인" name="passwordConfirm" />
+            <SubmitButton type="submit" value="회원가입" />
+        </form>
+    );
+}
+
+function CreateContents() {
+
+    var today = new Date();
+
+
+    return (
+        <form action="#" method="post" className="form">
+            <InputBox type="date" name="date" />
+            <InputBox type="text" placeholder="내용" name="contents" />
+            <SubmitButton type="submit" value="만들기" />
+        </form >
+    );
+}
+
+function Contents() {
+
+    return (
+        <CreateContents />
+    );
+}
+
+export default Contents;                    

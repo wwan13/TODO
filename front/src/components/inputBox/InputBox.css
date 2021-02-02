@@ -1,0 +1,31 @@
+.text-input {
+    background-color: #d5d5d5;
+    padding: 0px 20px;
+    width: 500px;
+    height: 80px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #414141;
+    font-weight: 600;
+    margin: 15px 0px;
+}
+
+.text-input::placeholder {
+    color: #b2b2b2;
+}
+
+.submit-button {
+    background-color: #d5d5d5;
+    width: 540px;
+    height: 80px;
+    outline: none;
+    border: none;
+    background-color: #414141;
+    border-radius: 10px;
+    margin: 45px 0px 15px 0px;
+    color: #d5d5d5;
+    font-size: 25px;
+    font-weight: bold;
+}
