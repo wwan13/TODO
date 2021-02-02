@@ -50,14 +50,14 @@ function OngoingButtonSet() {
 }
 
 function TodoObject({ data }) {
-    const complete = (
+    var complete = (
         <div className='object-box'>
             <CompleteContents data={data} />
             <CompleteButtonSet />
         </div>
     )
 
-    const ongoing = (
+    var ongoing = (
         <div className='object-box'>
             <OngoingContents data={data} />
             <OngoingButtonSet />
