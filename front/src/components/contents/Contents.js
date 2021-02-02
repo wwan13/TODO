@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Link } from 'react-router-dom'
 import './Contents.css'
 import SortNav from '../sortNav/SortNav'
 import TodoObject from '../todoObject/TodoObject'
@@ -56,6 +57,7 @@ function Login() {
             <InputBox type="text" placeholder="아이디" name="id" />
             <InputBox type="password" placeholder="비밀번호" name="password" />
             <SubmitButton type="submit" value="로그인" />
+            <Link className="signin-link" to="/signin">회원가입</Link>
         </form>
     );
 }
@@ -85,8 +87,13 @@ function CreateContents() {
 function Contents() {
 
     return (
-        <CreateContents />
-    );
+        <>
+            <Route path="/" exact={true} component={Todo} />
+            <Route path="/login" component={Login} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/create" component={CreateContents} />
+        </>
+    );        
 }
 
 export default Contents;                    
