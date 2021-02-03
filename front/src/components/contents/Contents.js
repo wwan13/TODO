@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Link } from 'react-router-dom'
 import './Contents.css'
 import SortNav from '../sortNav/SortNav'
@@ -7,6 +7,18 @@ import AddButton from '../addButton/AddButton'
 import InputBox from '../inputBox/InputBox'
 import SubmitButton from '../inputBox/SubmitButton'
 
+
+function Contents() {
+
+    return (
+        <>
+            <Route path="/" exact={true} component={Todo} />
+            <Route path="/login" component={Login} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/create" component={CreateContents} />
+        </>
+    );
+}
 
 function Todo() {
 
@@ -89,16 +101,5 @@ function CreateContents() {
     );
 }
 
-function Contents() {
-
-    return (
-        <>
-            <Route path="/" exact={true} component={Todo} />
-            <Route path="/login" component={Login} />
-            <Route path="/signin" component={Signin} />
-            <Route path="/create" component={CreateContents} />
-        </>
-    );
-}
 
 export default Contents;                    

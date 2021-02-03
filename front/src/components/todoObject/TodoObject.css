@@ -10,15 +10,29 @@
     align-items: center;
 }
 
-.object-box:hover {
+.object-box-detail {
+    width: 460px;
+    height: auto;
+    background-color: #d5d5d5;
+    margin: 20px 30px;
+    border-radius: 10px;
+    transition: .3s;
+    display: flex;
+    justify-content: space-between  ;
+    align-items: center;
+}
+
+.object-box:hover,
+.object-box-detail:hover {
     box-shadow: 1px 3px 6px gray;
     transform: translate(0%, -5%);
 }
 
 .object-contents {
-    height: 50px;
-    width: 330px;
-    margin-left: 20px;
+    height: auto;
+    width: 300px;
+    /* margin-left: 20px; */
+    margin: 16px 0px 16px 20px;
 }
 
 .contents-date {
@@ -29,7 +43,7 @@
 }
 
 .contents-detail {
-    height: 30px;
+    height: auto;
     font-size: 20px;
     font-weight: 600;
 }
