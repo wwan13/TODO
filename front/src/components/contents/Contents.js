@@ -14,7 +14,7 @@ function Todo() {
         {
             id: 1,
             date: "2020.12.21",
-            contents: "파이썬 공부 하기",
+            contents: "파이썬 공부 하기 파이썬 공부하기 파이썬 공부하기",
             state: "ongoing"
         },
         {
