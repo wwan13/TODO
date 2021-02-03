@@ -9,7 +9,7 @@
 .title {
     font-size: 40px;
     font-weight: Bold;
-    cursor: pointer;
+    cursor: default;
     color: #b2b2b2;
 }
 
@@ -17,7 +17,7 @@
     font-size: 25px;
     margin-left: 20px;
     color: #b2b2b2;
-    cursor: pointer;
+    cursor: default;
 }
 
 .logout-button {
