@@ -12,26 +12,31 @@ function Todo() {
 
     const datas = [
         {
+            id: 1,
             date: "2020.12.21",
             contents: "파이썬 공부 하기",
             state: "ongoing"
         },
         {
+            id: 2,
             date: "2020.12.21",
             contents: "리엑트는 진짜 죄악 이다",
             state: "ongoing"
         },
         {
+            id: 3,
             date: "2020.12.21",
             contents: "이거 프로젝트는 언제 다 끝내지",
             state: "complete"
         },
         {
+            id: 4,
             date: "2020.12.21",
             contents: "진짜 하기 싫다",
             state: "complete"
         },
         {
+            id: 5,
             date: "2020.12.21",
             contents: "나 오늘 면허 받았어 ~",
             state: "ongoing"
@@ -43,7 +48,7 @@ function Todo() {
             <SortNav />
             <div className='todo-box'>
                 {datas.map(data => (
-                    <TodoObject data={data} />
+                    <TodoObject data={data} key={data.id} />
                 ))}
             </div>
             <AddButton />
@@ -93,7 +98,7 @@ function Contents() {
             <Route path="/signin" component={Signin} />
             <Route path="/create" component={CreateContents} />
         </>
-    );        
+    );
 }
 
 export default Contents;                    
