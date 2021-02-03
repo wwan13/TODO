@@ -1,5 +1,5 @@
 .title-wrapper {
-    width: 600px;
+    width: 520px;
     height: 45px;
     margin-bottom: 20px;
     font-weight: Bold;
@@ -23,5 +23,5 @@
 .logout-button {
     font-size: 25px;
     color: #b2b2b2;
-    margin-left: 220px;
+    margin-left: 140px;
 }

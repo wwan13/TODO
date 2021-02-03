@@ -1,8 +1,8 @@
 .object-box {
-    width: 540px;
+    width: 460px;
     height: 80px;
     background-color: #d5d5d5;
-    margin: 20px 0px 20px 5px;
+    margin: 20px 30px;
     border-radius: 10px;
     transition: .3s;
     display: flex;
@@ -17,7 +17,7 @@
 
 .object-contents {
     height: 50px;
-    width: 380px;
+    width: 330px;
     margin-left: 20px;
 }
 

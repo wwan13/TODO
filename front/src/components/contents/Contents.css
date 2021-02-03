@@ -2,13 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 550px;
+    width: 520px;
 }
 
 .todo-box {
-    width: 550px;
+    width: 520px;
     height: 510px;
-    justify-content: center;
     overflow: auto;
 }
 
