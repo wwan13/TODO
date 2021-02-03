@@ -21,15 +21,17 @@ function TodoObject({ data }) {
     var [contents, setContents] = useState(contents);
 
     const changeHeight = () => {
-        if (!isOnToggle) {
-            setHeightSize("auto");
-            setContents(data.contents);
-            setToggleState(true);
-        } else {
-            setHeightSize("80px");
-            var tmp = getSlicedContents(data.contents);
-            setContents(tmp);
-            setToggleState(false);
+        if (data.contents.length > 16) {
+            if (!isOnToggle) {
+                setHeightSize("auto");
+                setContents(data.contents);
+                setToggleState(true);
+            } else {
+                setHeightSize("80px");
+                var tmp = getSlicedContents(data.contents);
+                setContents(tmp);
+                setToggleState(false);
+            }
         }
     }
 
