@@ -11,6 +11,8 @@
     font-size: 40px;
     font-weight: bold;
     transition: .4s;
+    line-height: 80px;
+    text-align: center;
 }
 
 .add-button:hover {
