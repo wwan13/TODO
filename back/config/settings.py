@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'todo.apps.TodoConfig',
-    'users.apps.UsersConfig',
 
     'rest_framework',
     'rest_framework.authtoken',
