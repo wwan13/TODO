@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # custom application
     'user.apps.UserConfig',
+    'todo.apps.TodoConfig',
 
     # authentication
     'rest_framework',
