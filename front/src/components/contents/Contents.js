@@ -6,6 +6,7 @@ import TodoObject from '../todoObject/TodoObject'
 import AddButton from '../addButton/AddButton'
 import InputBox from '../inputBox/InputBox'
 import SubmitButton from '../inputBox/SubmitButton'
+import getTodoData from '../../apis/getTodoData'
 
 
 function Contents() {
@@ -21,6 +22,8 @@ function Contents() {
 }
 
 function Todo() {
+
+    getTodoData()
 
     const datas = [
         {
