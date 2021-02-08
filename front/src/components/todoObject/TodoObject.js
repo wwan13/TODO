@@ -6,7 +6,6 @@ import { ReactComponent as TrashIcon } from '../../icons/trash.svg'
 
 /**
  * todo 데이터 하나하나를 출력 해 주는 컴포넌트
- * @param {data} : api를 통해 받아온 todo 데이터 
  */
 function TodoObject({ data }) {
 
@@ -136,7 +135,7 @@ function OngoingButtonSet() {
  * 받아온 문자열을 짧게 만들어주는 함수
  */
 function getSlicedContents(contents) {
-    var _contents = contents.substr(0, 16) + "...";
+    var _contents = contents.substr(0, 13) + "...";
     return _contents;
 }
 
