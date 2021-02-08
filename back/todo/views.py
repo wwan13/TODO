@@ -13,7 +13,7 @@ class TodoViewSet(ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
-    permission_classes= [IsAuthenticated]
+    # permission_classes= [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         
