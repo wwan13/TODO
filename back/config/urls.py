@@ -27,5 +27,5 @@ urlpatterns = [
     path('', include(router.urls)), 
 
     path('', include('user.urls')), 
-    path('api', include('todo.urls')), 
+    path('', include('todo.urls')), 
 ]
