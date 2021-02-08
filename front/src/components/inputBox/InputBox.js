@@ -1,6 +1,9 @@
 import React from 'react'
 import './InputBox.css'
 
+/**
+ * inputbox
+ */
 function TextInputBox(props) {
 
     return (

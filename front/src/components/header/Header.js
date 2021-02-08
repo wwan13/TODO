@@ -2,6 +2,9 @@ import React from 'react'
 import './Header.css'
 import { Route, Link } from 'react-router-dom'
 
+/**
+ * 록그인 화면의 헤더
+ */
 function LogInHeader() {
 
     return (
@@ -13,6 +16,9 @@ function LogInHeader() {
 
 }
 
+/**
+ * 회원가입 화면의 헤더
+ */
 function SignInHeader() {
     return (
         <div className='title-wrapper'>
@@ -22,6 +28,9 @@ function SignInHeader() {
     )
 }
 
+/**
+ * 메인 화면의 헤더
+ */
 function MainHeader() {
     return (
         <div className='title-wrapper'>
@@ -32,6 +41,9 @@ function MainHeader() {
     )
 }
 
+/**
+ * url에 따라 헤더를 바꿔줌
+ */
 function Header() {
 
     return (

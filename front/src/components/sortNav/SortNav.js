@@ -1,6 +1,9 @@
 import React from 'react'
 import './SortNav.css'
 
+/**
+ * todo 정렬 종류에 대한 헤더
+ */
 function SortNav() {
 
     return (
