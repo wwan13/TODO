@@ -30,11 +30,15 @@ function Todo() {
 
     var [datas, setDatas] = useState([]);
 
+    // 컴포넌트가 렌더링 될 때 api 호출을 통해 todo 데이터들을 불러옴
     useEffect(()  => {
 
         const fetchDatas = () => {
             const axios = require('axios');
-            axios.get('http://localhost:8000/todo/')
+            const URL = 'todo/'
+
+            // GET 요청
+            axios.get(URL)
             .then(response => {
                 setDatas(response.data);
             })
