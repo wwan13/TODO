@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
+import {axios} from 'axios'
 import './Contents.css'
 import SortNav from '../sortNav/SortNav'
 import TodoObject from '../todoObject/TodoObject'
@@ -28,13 +29,20 @@ function Contents() {
 function Todo() {
 
     var [loading, setLoading] = useState(false);
-    var [datas, setDatas] = useState([])
+    var [datas, setDatas] = useState([]);
 
-    fetch('http://localhost:8000/todo/')
-    .then(response => response.json())
-    .then(response => {
-        setDatas(response)
-    })
+    const axios = require('axios');
+    axios.get('http://localhost:8000/todo/')
+        .then(response => {
+            setDatas(response.data);
+            // console.log(response.json);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        .then(response => {
+            console.log(response);
+        })
 
     useEffect(() => {
         return () => setLoading(false);
