@@ -37,13 +37,11 @@ function Todo() {
             axios.get('http://localhost:8000/todo/')
             .then(response => {
                 setDatas(response.data);
-                // console.log(response.json);
             })
             .catch(error => {
                 console.log(error);
             })
             .then(response => {
-                console.log(response);
             })
         }
 
