@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
-import {axios} from 'axios'
 import './Contents.css'
 import SortNav from '../sortNav/SortNav'
 import TodoObject from '../todoObject/TodoObject'
 import AddButton from '../addButton/AddButton'
 import InputBox from '../inputBox/InputBox'
 import SubmitButton from '../inputBox/SubmitButton'
+import CSRFToken from '../../middleware/CSRFToken'
 
 /**
  * url에 따라 메인 컨텐츠를 바꿔줌
@@ -18,7 +18,7 @@ function Contents() {
             <Route path="/" exact={true} component={Todo} />
             <Route path="/login" component={Login} />
             <Route path="/signin" component={Signin} />
-            <Route path="/create" component={CreateContents} />
+            <Route path="/todo/" component={CreateContents} />
         </>
     );
 }
@@ -99,10 +99,41 @@ function Signin() {
  * todo 생성 화면
  */
 function CreateContents() {
+
+    const [inputs , setInputs] = useState({
+        date: "",
+        contents: "",
+    });
+
+    const onChange = (e) => {
+        const { value, name } = e.target; 
+        setInputs({
+            ...inputs, 
+            [name]: value 
+        });
+        console.log(inputs)
+    };
+
+    const submitButtonHandle = () => {
+        console.log(inputs)
+        const axios = require('axios')
+        axios.post('todo/', inputs)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        .then(response => {
+
+        })
+    }
+
     return (
-        <form action="#" method="post" className="form">
-            <InputBox type="date" name="date" />
-            <InputBox type="text" placeholder="내용" name="contents" />
+        <form onSubmit={submitButtonHandle} method="POST" className="form">
+            <CSRFToken />
+            <InputBox type="date" name="date" onChange={onChange} required={true}/>
+            <InputBox type="text" placeholder="내용" name="contents" onChange={onChange} required={true} />
             <SubmitButton type="submit" value="만들기" />
         </form >
     );
