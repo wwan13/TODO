@@ -28,25 +28,28 @@ function Contents() {
  */
 function Todo() {
 
-    var [loading, setLoading] = useState(false);
     var [datas, setDatas] = useState([]);
 
-    const axios = require('axios');
-    axios.get('http://localhost:8000/todo/')
-        .then(response => {
-            setDatas(response.data);
-            // console.log(response.json);
-        })
-        .catch(error => {
-            console.log(error);
-        })
-        .then(response => {
-            console.log(response);
-        })
+    useEffect(()  => {
 
-    useEffect(() => {
-        return () => setLoading(false);
-    }, []);
+        const fetchDatas = () => {
+            const axios = require('axios');
+            axios.get('http://localhost:8000/todo/')
+            .then(response => {
+                setDatas(response.data);
+                // console.log(response.json);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .then(response => {
+                console.log(response);
+            })
+        }
+
+        fetchDatas();
+
+    }, [])
 
     return (
         <div className='contents-wrapper'>
