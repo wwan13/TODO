@@ -16,8 +16,8 @@ function Contents() {
     return (
         <>
             <Route path="/" exact={true} component={Todo} />
-            <Route path="/login" component={Login} />
-            <Route path="/signin" component={Signin} />
+            <Route path="/login/" component={Login} />
+            <Route path="/signin/" component={Signin} />
             <Route path="/todo/" component={CreateContents} />
         </>
     );
