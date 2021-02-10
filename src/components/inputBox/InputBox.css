@@ -10,10 +10,15 @@
     color: #414141;
     font-weight: 600;
     margin: 10px 0px;
+    transition: .4s;
 }
 
 .text-input::placeholder {
     color: #b2b2b2;
+}
+
+.text-input:focus {
+    box-shadow: 1px 3px 6px gray;
 }
 
 .submit-button {
