@@ -3,6 +3,21 @@ import './Header.css'
 import { Route, Link } from 'react-router-dom'
 
 /**
+ * url에 따라 헤더를 바꿔줌
+ */
+function Header() {
+
+    return (
+        <>
+            <Route path="/todo/" exact={true} component={MainHeader} />
+            <Route path="/todo/create/" component={MainHeader} />
+            <Route path="/login/" component={LogInHeader} />
+            <Route path="/signin/" component={SignInHeader} />
+        </>
+    )
+}
+
+/**
  * 록그인 화면의 헤더
  */
 function LogInHeader() {
@@ -41,19 +56,5 @@ function MainHeader() {
     )
 }
 
-/**
- * url에 따라 헤더를 바꿔줌
- */
-function Header() {
-
-    return (
-        <>
-            <Route path="/" exact={true} component={MainHeader} />
-            <Route path="/todo/" component={MainHeader} />
-            <Route path="/login/" component={LogInHeader} />
-            <Route path="/signin/" component={SignInHeader} />
-        </>
-    )
-}
 
 export default Header

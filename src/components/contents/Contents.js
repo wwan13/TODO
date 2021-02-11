@@ -15,10 +15,10 @@ function Contents() {
 
     return (
         <>
-            <Route path="/" exact={true} component={Todo} />
+            <Route path="/todo/" exact={true} component={Todo} />
             <Route path="/login/" component={Login} />
             <Route path="/signin/" component={Signin} />
-            <Route path="/todo/" component={CreateContents} />
+            <Route path="/todo/create/" component={CreateContents} />
         </>
     );
 }
@@ -35,7 +35,7 @@ function Todo() {
 
         const fetchDatas = () => {
             const axios = require('axios');
-            const URL = 'todo/'
+            const URL = 'http://localhost:8000/api/todo/'
 
             // GET 요청
             axios.get(URL)
@@ -115,9 +115,8 @@ function CreateContents() {
     };
 
     const submitButtonHandle = () => {
-        console.log(inputs)
         const axios = require('axios')
-        axios.post('todo/', inputs)
+        axios.post('http://localhost:8000/api/todo/', inputs)
         .then(response => {
             console.log(response)
         })
@@ -130,7 +129,7 @@ function CreateContents() {
     }
 
     return (
-        <form onSubmit={submitButtonHandle} method="POST" className="form">
+        <form action='http://localhost:8000/api/todo/' method="POST" className="form">
             <CSRFToken />
             <InputBox type="date" name="date" onChange={onChange} required={true}/>
             <InputBox type="text" placeholder="내용" name="contents" onChange={onChange} required={true} />

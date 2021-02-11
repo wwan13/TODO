@@ -7,7 +7,7 @@ import './AddButton.css'
  */
 function AddButton() {
     return (
-        <Link to="/todo/" className='add-button'>+</Link>
+        <Link to="/todo/create/" className='add-button'>+</Link>
     );
 }
 

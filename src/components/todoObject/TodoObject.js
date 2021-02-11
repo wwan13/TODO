@@ -3,7 +3,8 @@ import './TodoObject.css'
 import { ReactComponent as CheckIcon } from '../../icons/check.svg'
 import { ReactComponent as EditIcon } from '../../icons/edit.svg'
 import { ReactComponent as TrashIcon } from '../../icons/trash.svg'
-import Contents from '../contents/Contents'
+
+const oneLineSize = 17
 
 /**
  * todo 데이터 하나하나를 출력 해 주는 컴포넌트
@@ -20,7 +21,7 @@ function TodoObject({ data }) {
 
     var contents;
     // 데이터가 길면 말줄임표를 이용해 짧게 출력
-    if (data.contents.length > 14) {
+    if (data.contents.length > oneLineSize) {
         contents = getSlicedContents(data.contents);
     } else {
         contents = data.contents;
@@ -34,7 +35,7 @@ function TodoObject({ data }) {
 
         console.log("aaa")
         // 글이 길 경우
-        if (data.contents.length > 14) {
+        if (data.contents.length > oneLineSize) {
             // 토글이 안되어 있으면 크기를 늘림
             if (!isOnToggle) {
                 setHeightSize("auto");
@@ -107,9 +108,6 @@ function CompleteButtonSet() {
  */
 function OngoingContents({ date, contents, onClick }) {
 
-    // var contents = makeShortString(data.contents)
-    // var contents = data.contents;
-
     return (
         <div onClick={onClick} className='object-contents'>
             <p className='contents-date ongoing'>{date}</p>
@@ -124,14 +122,16 @@ function OngoingContents({ date, contents, onClick }) {
  */
 function OngoingButtonSet({dataId}) {
 
+    const URL = 'http://localhost:8000/api/todo/' + dataId + '/';
+
     const deleteButtenHandle = (e) => {
         e.preventDefault();
         const axios = require('axios');
-        axios.delete('todo/' + dataId)
+        axios.delete(URL)
         .then( () => {
+            console.log("delete complete")
         })
         .then( () => {
-
         })
     }
 
@@ -149,7 +149,7 @@ function OngoingButtonSet({dataId}) {
  * 받아온 문자열을 짧게 만들어주는 함수
  */
 function getSlicedContents(contents) {
-    var _contents = contents.substr(0, 14) + "...";
+    var _contents = contents.substr(0, oneLineSize) + "...";
     return _contents;
 }
 
