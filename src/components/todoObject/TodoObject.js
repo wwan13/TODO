@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import {Link, Redirect } from 'react-router-dom'
 import './TodoObject.css'
 import { ReactComponent as CheckIcon } from '../../icons/check.svg'
 import { ReactComponent as EditIcon } from '../../icons/edit.svg'
 import { ReactComponent as TrashIcon } from '../../icons/trash.svg'
 
-import {DELETETodoObject, GETTodoList} from '../../apis/todoApi'
+import {DELETETodoObject, GETTodoList, OPTIONSetComplete, OPTIONSetOngoing} from '../../apis/todoApi'
 
 const oneLineSize = 17
 
@@ -22,16 +21,16 @@ function TodoObject({ data, setDatas }) {
     // 클릭시 전체 데이터를 출력 해 주기 위한 hook
     var [heightSize, setHeightSize] = useState("80px")
 
-    var contents;
+    var initialContents;
     // 데이터가 길면 말줄임표를 이용해 짧게 출력
     if (data.contents.length > oneLineSize) {
-        contents = getSlicedContents(data.contents);
+        initialContents = getSlicedContents(data.contents);
     } else {
-        contents = data.contents;
+        initialContents = data.contents;
     }
 
     // toggle 상태에 따라 데이터를 바꿔주기 위한 hook
-    var [contents, setContents] = useState(contents);
+    var [contents, setContents] = useState(initialContents);
 
     // toggle 상태와 컨텐츠 길이에 따라 클릭시 컨텐트 전체를 보여주는 함수
     const changeHeight = () => {
@@ -55,7 +54,7 @@ function TodoObject({ data, setDatas }) {
     var complete = (
         <div className='object-box' style={{ height: heightSize }}>
             <CompleteContents onClick={() => changeHeight()} date={date} contents={contents} />
-            <CompleteButtonSet />
+            <CompleteButtonSet setDatas={setDatas} dataId={data.id} />
         </div>
     )
 
@@ -94,11 +93,41 @@ function CompleteContents({ date, contents, onClick }) {
 /**
  * 완료된 객체 에 대한 버튼
  */
-function CompleteButtonSet() {
+function CompleteButtonSet({dataId, setDatas}) {
+
+    // DELETE 호출 후에 데이터 셋을 새로 바꿔주는 함수
+    const setNewDatasets = () => {
+        GETTodoList().then(response => {
+            console.log('set new data sets')
+            setDatas(response.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    // DLETE 메소드 호출
+    const handleDeleteButton = () => {
+        DELETETodoObject(dataId).then(response => {
+            setNewDatasets()
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    // 상태를 완료로 바꿔줌
+    const handleOngoingButton = () => {
+        OPTIONSetOngoing(dataId).then(response => {
+            console.log(response.data)
+            setNewDatasets()
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 
     return (
         <div className='object-buttons'>
-            <button><TrashIcon fill='#b2b2b2' width='17px' height='17px' /></button>
+            <button onClick={() => handleOngoingButton()}><CheckIcon fill='#b2b2b2' width='23px' height='23px' /></button>
+            <button onClick={() => handleDeleteButton()}><TrashIcon fill='#b2b2b2' width='17px' height='17px' /></button>
         </div>
     );
 
@@ -123,26 +152,40 @@ function OngoingContents({ date, contents }) {
  */
 function OngoingButtonSet({dataId, setDatas}) {
 
+    // DELETE 호출 후에 데이터 셋을 새로 바꿔주는 함수
     const setNewDatasets = () => {
         GETTodoList().then(response => {
             console.log('set new data sets')
             setDatas(response.data)
+        }).catch(error => {
+            console.log(error)
         })
     }
 
+    // DLETE 메소드 호출
     const handleDeleteButton = () => {
-        console.log(dataId)
         DELETETodoObject(dataId).then(response => {
-            console.log(response)
             setNewDatasets()
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    // 상태를 완료로 바꿔줌
+    const handleCompleteButton = () => {
+        OPTIONSetComplete(dataId).then(response => {
+            console.log(response.data)
+            setNewDatasets()
+        }).catch(error => {
+            console.log(error)
         })
     }
 
     return (
         <div className='object-buttons'>
-            <button><CheckIcon fill='#414141' width='23px' height='23px' /></button>
+            <button onClick={() => handleCompleteButton()}><CheckIcon fill='#414141' width='23px' height='23px' /></button>
             <button><EditIcon fill='#414141' width='23px' height='23px' /></button>
-            <button onClick={handleDeleteButton}><TrashIcon fill='#414141' width='17px' height='17px' /></button>
+            <button onClick={() => handleDeleteButton()}><TrashIcon fill='#414141' width='17px' height='17px' /></button>
         </div>
     );
 

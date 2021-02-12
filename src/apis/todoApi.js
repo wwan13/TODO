@@ -18,22 +18,29 @@ export const POSTTodoObject = (todoData) => {
 }
 
 /**
- * DELETE http://localhost:8000/api/todo/todoId
+ * DELETE http://localhost:8000/api/todo/{todoId}
  */
 export const DELETETodoObject = (todoId) => {
     return axios.delete(TODO_API_URL + todoId)
 }
 
 /**
- * UPDATE http://localhost:8000/api/todo/todoId
+ * UPDATE http://localhost:8000/api/todo/{todoId}
  */
 export const UPDATETodoObject = (todoId, todoData) => {
 
 }
 
 /**
- * OPTION http://localhost:8000/api/todo/todoId
+ * GET http://localhost:8000/api/todo/{todoId}/set_complete
  */
 export const OPTIONSetComplete = (todoId) => {
+    return axios.get(TODO_API_URL + todoId + "/set_complete")
+}
 
+/**
+ * GET http://localhost:8000/api/todo/{todoId}/set_ongoing
+ */
+export const OPTIONSetOngoing = (todoId) => {
+    return axios.get(TODO_API_URL + todoId + "/set_ongoing")
 }
