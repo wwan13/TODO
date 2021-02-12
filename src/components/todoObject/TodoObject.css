@@ -48,7 +48,8 @@
     height: 50px;
 }
 
-.object-buttons button {
+.object-buttons button,
+.update-button {
     margin-right: 15px;
     background-color: #d5d5d5;
     border: none;
