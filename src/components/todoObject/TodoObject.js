@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Link, Redirect} from 'react-router-dom'
 import './TodoObject.css'
 import { ReactComponent as CheckIcon } from '../../icons/check.svg'
 import { ReactComponent as EditIcon } from '../../icons/edit.svg'
@@ -9,7 +10,7 @@ const oneLineSize = 17
 /**
  * todo 데이터 하나하나를 출력 해 주는 컴포넌트
  */
-function TodoObject({ data }) {
+function TodoObject({ data, onClick }) {
 
     // 토글이 되어있는지 상태를 나타내는 hooks
     var [isOnToggle, setToggleState] = useState(false);
@@ -32,8 +33,6 @@ function TodoObject({ data }) {
 
     // toggle 상태와 컨텐츠 길이에 따라 클릭시 컨텐트 전체를 보여주는 함수
     const changeHeight = () => {
-
-        console.log("aaa")
         // 글이 길 경우
         if (data.contents.length > oneLineSize) {
             // 토글이 안되어 있으면 크기를 늘림
@@ -62,7 +61,7 @@ function TodoObject({ data }) {
     var ongoing = (
         <div className='object-box' style={{ height: heightSize }}>
             <OngoingContents onClick={() => changeHeight()} date={date} contents={contents} />
-            <OngoingButtonSet dataId = {data.id} />
+            <OngoingButtonSet onClick={onClick} dataId = {data.id} />
         </div>
     )
 
@@ -91,7 +90,7 @@ function CompleteContents({ date, contents,onClick }) {
 }
 
 /**
- * 진행중인 객체 에 대한 버튼
+ * 완료된 객체 에 대한 버튼
  */
 function CompleteButtonSet() {
 
@@ -118,28 +117,28 @@ function OngoingContents({ date, contents, onClick }) {
 }
 
 /**
- * 완료된 객채에 대한 버튼들
+ * 진행중인 객채에 대한 버튼들
  */
-function OngoingButtonSet({dataId}) {
+function OngoingButtonSet({dataId , onClick}) {
 
     const URL = 'http://localhost:8000/api/todo/' + dataId + '/';
 
-    const deleteButtenHandle = (e) => {
-        e.preventDefault();
-        const axios = require('axios');
-        axios.delete(URL)
-        .then( () => {
-            console.log("delete complete")
-        })
-        .then( () => {
-        })
-    }
+    // const deleteButtenHandle = (e) => {
+    //     e.preventDefault();
+    //     const axios = require('axios');
+    //     axios.delete(URL)
+    //     .then( () => {
+    //         console.log("delete complete")
+    //     })
+    //     .then( () => {
+    //     })
+    // }
 
     return (
         <div className='object-buttons'>
             <a href='#'><CheckIcon fill='#414141' width='23px' height='23px' /></a>
             <a href='#'><EditIcon fill='#414141' width='23px' height='23px' /></a>
-            <a href='#' onClick={deleteButtenHandle}><TrashIcon fill='#414141' width='17px' height='17px' /></a>
+            <Link to='/todo' onClick={onClick}><TrashIcon fill='#414141' width='17px' height='17px' /></Link>
         </div>
     );
 

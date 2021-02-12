@@ -23,6 +23,17 @@ function Contents() {
     );
 }
 
+function deleteButtenHandle(dataId) {
+    const URL = 'http://localhost:8000/api/todo/' + dataId + '/';
+    const axios = require('axios');
+    axios.delete(URL)
+    .then( () => {
+        console.log("delete complete")
+    })
+    .then( () => {
+    })
+}
+
 /**
  * todo list 가 나오는 컨텐츠
  */
@@ -49,6 +60,7 @@ function Todo() {
             })
         }
 
+        console.log("rendering todo component")
         fetchDatas();
 
     }, [])
@@ -58,7 +70,7 @@ function Todo() {
             <SortNav />
             <div className='todo-box'>
                 {datas.map(data => (
-                    <TodoObject data={data} key={data.id} />
+                    <TodoObject onClick={() => deleteButtenHandle(data.id)} data={data} key={data.id} />
                 ))}
             </div>
             <AddButton />
