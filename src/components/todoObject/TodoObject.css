@@ -48,6 +48,9 @@
     height: 50px;
 }
 
-.object-buttons a {
+.object-buttons button {
     margin-right: 15px;
+    background-color: #d5d5d5;
+    border: none;
+    outline: none;
 }
