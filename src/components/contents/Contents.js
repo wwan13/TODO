@@ -12,7 +12,7 @@ import CSRFToken from '../../middleware/CSRFToken'
 
 import {useHistory} from 'react-router-dom'
 
-import {GETTodoList, POSTTodoObject} from '../../apis/todoApi'
+import {GET_TodoList, POST_TodoObject} from '../../apis/todoApi'
 import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL, TODO_UPDATE_URL} from '../../urls/urls'
 
 /**
@@ -40,7 +40,7 @@ function Todo() {
 
     // 새로 렌더링 될 떄 마다 GET 메소드 호출
     useEffect(() => {
-        GETTodoList().then(response => {
+        GET_TodoList().then(response => {
             setDatas(response.data)
         })
     }, [])
@@ -114,7 +114,7 @@ function CreateContents() {
         let data = new FormData(e.target);
 
         // POST 메소드 호풀
-        POSTTodoObject(data).then(response => {
+        POST_TodoObject(data).then(response => {
             // 메인 화면으로 화면 이동
             history.push("/")
         }).catch(error => {

@@ -4,7 +4,9 @@ import { ReactComponent as CheckIcon } from '../../icons/check.svg'
 import { ReactComponent as EditIcon } from '../../icons/edit.svg'
 import { ReactComponent as TrashIcon } from '../../icons/trash.svg'
 
-import {DELETETodoObject, GETTodoList, OPTIONSetComplete, OPTIONSetOngoing} from '../../apis/todoApi'
+import {Link} from 'react-router-dom'
+import {DELETE_TodoObject, GET_TodoList, GET_SetComplete, GET_SetOngoing} from '../../apis/todoApi'
+import {GET_TODO_UPDATE_URL} from '../../urls/urls'
 
 const oneLineSize = 17
 
@@ -97,7 +99,7 @@ function CompleteButtonSet({dataId, setDatas}) {
 
     // DELETE 호출 후에 데이터 셋을 새로 바꿔주는 함수
     const setNewDatasets = () => {
-        GETTodoList().then(response => {
+        GET_TodoList().then(response => {
             console.log('set new data sets')
             setDatas(response.data)
         }).catch(error => {
@@ -107,7 +109,7 @@ function CompleteButtonSet({dataId, setDatas}) {
 
     // DLETE 메소드 호출
     const handleDeleteButton = () => {
-        DELETETodoObject(dataId).then(response => {
+        DELETE_TodoObject(dataId).then(response => {
             setNewDatasets()
         }).catch(error => {
             console.log(error)
@@ -116,7 +118,7 @@ function CompleteButtonSet({dataId, setDatas}) {
 
     // 상태를 완료로 바꿔줌
     const handleOngoingButton = () => {
-        OPTIONSetOngoing(dataId).then(response => {
+        GET_SetOngoing(dataId).then(response => {
             console.log(response.data)
             setNewDatasets()
         }).catch(error => {
@@ -154,7 +156,7 @@ function OngoingButtonSet({dataId, setDatas}) {
 
     // DELETE 호출 후에 데이터 셋을 새로 바꿔주는 함수
     const setNewDatasets = () => {
-        GETTodoList().then(response => {
+        GET_TodoList().then(response => {
             console.log('set new data sets')
             setDatas(response.data)
         }).catch(error => {
@@ -164,7 +166,7 @@ function OngoingButtonSet({dataId, setDatas}) {
 
     // DLETE 메소드 호출
     const handleDeleteButton = () => {
-        DELETETodoObject(dataId).then(response => {
+        DELETE_TodoObject(dataId).then(response => {
             setNewDatasets()
         }).catch(error => {
             console.log(error)
@@ -173,7 +175,7 @@ function OngoingButtonSet({dataId, setDatas}) {
 
     // 상태를 완료로 바꿔줌
     const handleCompleteButton = () => {
-        OPTIONSetComplete(dataId).then(response => {
+        GET_SetComplete(dataId).then(response => {
             console.log(response.data)
             setNewDatasets()
         }).catch(error => {
@@ -184,7 +186,7 @@ function OngoingButtonSet({dataId, setDatas}) {
     return (
         <div className='object-buttons'>
             <button onClick={() => handleCompleteButton()}><CheckIcon fill='#414141' width='23px' height='23px' /></button>
-            <button><EditIcon fill='#414141' width='23px' height='23px' /></button>
+            <Link className="update-button" to={() => GET_TODO_UPDATE_URL(dataId)}><EditIcon fill='#414141' width='23px' height='23px' /></Link>
             <button onClick={() => handleDeleteButton()}><TrashIcon fill='#414141' width='17px' height='17px' /></button>
         </div>
     );
