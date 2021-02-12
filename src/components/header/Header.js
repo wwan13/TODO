@@ -2,6 +2,8 @@ import React from 'react'
 import './Header.css'
 import { Route, Link } from 'react-router-dom'
 
+import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL} from '../../urls/urls'
+
 /**
  * url에 따라 헤더를 바꿔줌
  */
@@ -9,10 +11,10 @@ function Header() {
 
     return (
         <>
-            <Route path="/todo/" exact={true} component={MainHeader} />
-            <Route path="/todo/create/" component={MainHeader} />
-            <Route path="/login/" component={LogInHeader} />
-            <Route path="/signin/" component={SignInHeader} />
+            <Route path={MAIN_URL} exact={true} component={MainHeader} />
+            <Route path={TODO_CREATE_URL} component={MainHeader} />
+            <Route path={LOGIN_URL} component={LogInHeader} />
+            <Route path={SIGNIN_URL} component={SignInHeader} />
         </>
     )
 }
@@ -24,7 +26,7 @@ function LogInHeader() {
 
     return (
         <div className='title-wrapper'>
-            <Link to="/login/" className='title'>Todo List</Link>
+            <Link to={LOGIN_URL} className='title'>Todo List</Link>
             <span className='user-info'> 로그인</span>
         </div >
     )
@@ -37,7 +39,7 @@ function LogInHeader() {
 function SignInHeader() {
     return (
         <div className='title-wrapper'>
-            <Link to="/login/" className='title'>Todo List</Link>
+            <Link to={LOGIN_URL} className='title'>Todo List</Link>
             <span className='user-info'>회원가입</span>
         </div >
     )
@@ -49,7 +51,7 @@ function SignInHeader() {
 function MainHeader() {
     return (
         <div className='title-wrapper'>
-            <Link to="/" className='title'>Todo List</Link>
+            <Link to={MAIN_URL} className='title'>Todo List</Link>
             <span className='user-info'>김태완 님</span>
             <a href="#" className='logout-button'>로그아웃</a>
         </div >

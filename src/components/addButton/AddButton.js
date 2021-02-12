@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './AddButton.css'
+import {TODO_CREATE_URL} from '../../urls/urls'
 
 /**
  * todo 추가 버튼
  */
 function AddButton() {
     return (
-        <Link to="/todo/create/" className='add-button'>+</Link>
+        <Link to={TODO_CREATE_URL} className='add-button'>+</Link>
     );
 }
 

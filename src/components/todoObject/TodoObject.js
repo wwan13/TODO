@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
-import {Link, Redirect} from 'react-router-dom'
+import {Link, Redirect } from 'react-router-dom'
 import './TodoObject.css'
 import { ReactComponent as CheckIcon } from '../../icons/check.svg'
 import { ReactComponent as EditIcon } from '../../icons/edit.svg'
 import { ReactComponent as TrashIcon } from '../../icons/trash.svg'
+
+import {DELETETodoObject, GETTodoList} from '../../apis/todoApi'
 
 const oneLineSize = 17
 
 /**
  * todo 데이터 하나하나를 출력 해 주는 컴포넌트
  */
-function TodoObject({ data, onClick }) {
+function TodoObject({ data, setDatas }) {
 
     // 토글이 되어있는지 상태를 나타내는 hooks
     var [isOnToggle, setToggleState] = useState(false);
@@ -61,7 +63,7 @@ function TodoObject({ data, onClick }) {
     var ongoing = (
         <div className='object-box' style={{ height: heightSize }}>
             <OngoingContents onClick={() => changeHeight()} date={date} contents={contents} />
-            <OngoingButtonSet dataId = {data.id} />
+            <OngoingButtonSet setDatas={setDatas} dataId={data.id} />
         </div>
     )
 
@@ -78,7 +80,7 @@ function TodoObject({ data, onClick }) {
 /**
  * 진행중인 객체
  */
-function CompleteContents({ date, contents,onClick }) {
+function CompleteContents({ date, contents, onClick }) {
 
     return (
         <div onClick={onClick} className='object-contents'>
@@ -96,7 +98,7 @@ function CompleteButtonSet() {
 
     return (
         <div className='object-buttons'>
-            <a href='#'><TrashIcon fill='#b2b2b2' width='17px' height='17px' /></a>
+            <button><TrashIcon fill='#b2b2b2' width='17px' height='17px' /></button>
         </div>
     );
 
@@ -119,13 +121,28 @@ function OngoingContents({ date, contents }) {
 /**
  * 진행중인 객채에 대한 버튼들
  */
-function OngoingButtonSet() {
+function OngoingButtonSet({dataId, setDatas}) {
+
+    const setNewDatasets = () => {
+        GETTodoList().then(response => {
+            console.log('set new data sets')
+            setDatas(response.data)
+        })
+    }
+
+    const handleDeleteButton = () => {
+        console.log(dataId)
+        DELETETodoObject(dataId).then(response => {
+            console.log(response)
+            setNewDatasets()
+        })
+    }
 
     return (
         <div className='object-buttons'>
-            <a href='#'><CheckIcon fill='#414141' width='23px' height='23px' /></a>
-            <a href='#'><EditIcon fill='#414141' width='23px' height='23px' /></a>
-            <Link to='#'><TrashIcon fill='#414141' width='17px' height='17px' /></Link>
+            <button><CheckIcon fill='#414141' width='23px' height='23px' /></button>
+            <button><EditIcon fill='#414141' width='23px' height='23px' /></button>
+            <button onClick={handleDeleteButton}><TrashIcon fill='#414141' width='17px' height='17px' /></button>
         </div>
     );
 

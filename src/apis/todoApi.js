@@ -14,7 +14,7 @@ export const GETTodoList = () => {
  * POST http://localhost:8000/api/todo/
  */
 export const POSTTodoObject = (todoData) => {
-    return axios.post(TODO_API_URL)
+    return axios.post(TODO_API_URL , todoData)
 }
 
 /**
