@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.css'
 import { Route, Link } from 'react-router-dom'
 
-import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL} from '../../urls/urls'
+import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL, TODO_UPDATE_URL} from '../../urls/urls'
 
 /**
  * url에 따라 헤더를 바꿔줌
@@ -13,6 +13,7 @@ function Header() {
         <>
             <Route path={MAIN_URL} exact={true} component={MainHeader} />
             <Route path={TODO_CREATE_URL} component={MainHeader} />
+            <Route path={TODO_UPDATE_URL} component={MainHeader} />
             <Route path={LOGIN_URL} component={LogInHeader} />
             <Route path={SIGNIN_URL} component={SignInHeader} />
         </>

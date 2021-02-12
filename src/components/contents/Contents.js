@@ -10,10 +10,10 @@ import InputBox from '../inputBox/InputBox'
 import SubmitButton from '../inputBox/SubmitButton'
 import CSRFToken from '../../middleware/CSRFToken'
 
-import {Redirect} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 import {GETTodoList, POSTTodoObject} from '../../apis/todoApi'
-import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL} from '../../urls/urls'
+import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL, TODO_UPDATE_URL} from '../../urls/urls'
 
 /**
  * url에 따라 메인 컨텐츠를 바꿔줌
@@ -26,6 +26,7 @@ function Contents() {
             <Route path={LOGIN_URL} component={Login} />
             <Route path={SIGNIN_URL} component={Signin} />
             <Route path={TODO_CREATE_URL} component={CreateContents} />
+            <Route path={TODO_UPDATE_URL} component={CreateContents} />
         </>
     );
 }
@@ -40,7 +41,6 @@ function Todo() {
     // 새로 렌더링 될 떄 마다 GET 메소드 호출
     useEffect(() => {
         GETTodoList().then(response => {
-            console.log(response.data);
             setDatas(response.data)
         })
     }, [])
@@ -96,6 +96,7 @@ function CreateContents() {
         date: "",
         contents: "",
     });
+    const history = useHistory();
 
     // input 안의 상테 체크
     const onChange = (e) => {
@@ -110,12 +111,12 @@ function CreateContents() {
     // submit 이벤트
     const handleSubmitButton = (e) => {
         e.preventDefault();
-
         let data = new FormData(e.target);
-        console.log(data)
 
+        // POST 메소드 호풀
         POSTTodoObject(data).then(response => {
-            console.log(response);
+            // 메인 화면으로 화면 이동
+            history.push("/")
         }).catch(error => {
             console.log(error)
         })
