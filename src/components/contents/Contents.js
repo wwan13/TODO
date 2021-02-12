@@ -7,12 +7,13 @@ import SortNav from '../sortNav/SortNav'
 import TodoObject from '../todoObject/TodoObject'
 import AddButton from '../addButton/AddButton'
 import InputBox from '../inputBox/InputBox'
+import UpdateInputBox from '../inputBox/UpdateInputBox'
 import SubmitButton from '../inputBox/SubmitButton'
 import CSRFToken from '../../middleware/CSRFToken'
 
 import {useHistory} from 'react-router-dom'
 
-import {GET_TodoList, POST_TodoObject} from '../../apis/todoApi'
+import {GET_TodoList, POST_TodoObject, GET_TodoObject, PUT_TodoObject} from '../../apis/todoApi'
 import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL, TODO_UPDATE_URL} from '../../urls/urls'
 
 /**
@@ -26,7 +27,7 @@ function Contents() {
             <Route path={LOGIN_URL} component={Login} />
             <Route path={SIGNIN_URL} component={Signin} />
             <Route path={TODO_CREATE_URL} component={CreateContents} />
-            <Route path={TODO_UPDATE_URL} component={CreateContents} />
+            <Route path={TODO_UPDATE_URL} component={UpdateContents} />
         </>
     );
 }
@@ -92,21 +93,7 @@ function Signin() {
  */
 function CreateContents() {
 
-    const [inputs , setInputs] = useState({
-        date: "",
-        contents: "",
-    });
     const history = useHistory();
-
-    // input 안의 상테 체크
-    const onChange = (e) => {
-        const { value, name } = e.target; 
-        setInputs({
-            ...inputs, 
-            [name]: value 
-        });
-        console.log(inputs);
-    };
 
     // submit 이벤트
     const handleSubmitButton = (e) => {
@@ -125,9 +112,53 @@ function CreateContents() {
     return (
         <form onSubmit={handleSubmitButton} className="form">
             <CSRFToken />
-            <InputBox type="date" name="date" onChange={onChange} required={true}/>
+            <InputBox type="date" name="date" required={true}/>
             <InputBox type="text" placeholder="내용" name="contents" required={true} />
             <SubmitButton type="submit" value="만들기" />
+        </form >
+    );
+}
+
+/**
+ * todo 업데이트
+ */
+function UpdateContents({match}) {
+
+    const history = useHistory();
+    const [todoData, setTodoData] = useState({
+        date : "",
+        contents : "",
+    });
+    const dataId = match.params.id;
+
+    useEffect(() => {
+        GET_TodoObject(dataId).then(response => {
+            setTodoData(response.data)
+        })
+    },[])
+
+    // submit 이벤트
+    const handleSubmitButton = (e) => {
+        e.preventDefault();
+        let data = new FormData(e.target);
+
+        // POST 메소드 호풀
+        PUT_TodoObject(dataId,data).then(response => {
+            console.log(response)
+
+            // 메인 화면으로 화면 이동
+            // history.push("/")
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    return (
+        <form onSubmit={handleSubmitButton} className="form">
+            <CSRFToken />
+            <UpdateInputBox type="date" name="date" value={todoData.date} required={true}/>
+            <UpdateInputBox type="text" value={todoData.contents} name="contents" required={true} />
+            <SubmitButton type="submit" value="수정하기" />
         </form >
     );
 }

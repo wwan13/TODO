@@ -10,6 +10,13 @@ export const GET_TodoList = () => {
 }
 
 /**
+ * GET http://localhost:8000/api/todo/{todoId}
+ */
+export const GET_TodoObject = (todoId) => {
+    return axios.get(TODO_API_URL + todoId)
+}
+
+/**
  * POST http://localhost:8000/api/todo/
  */
 export const POST_TodoObject = (todoData) => {
@@ -24,10 +31,10 @@ export const DELETE_TodoObject = (todoId) => {
 }
 
 /**
- * PATCH http://localhost:8000/api/todo/{todoId}
+ * PUT http://localhost:8000/api/todo/{todoId}
  */
-export const PATCH_TodoObject = (todoId, todoData) => {
-    
+export const PUT_TodoObject = (todoId, todoData) => {
+    return axios.put(TODO_API_URL + todoId + "/", todoData)
 }
 
 /**

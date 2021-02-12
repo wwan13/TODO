@@ -7,7 +7,7 @@ import './InputBox.css'
 function InputBox(props) {
 
     return (
-        <input type={props.type} defaultValue={props.value} placeholder={props.placeholder} name={props.name} className="text-input" />
+        <input type={props.type} defaultValue={props.value} name={props.name} className="text-input" />
     );
 }
 
