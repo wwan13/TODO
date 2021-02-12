@@ -61,7 +61,7 @@ function TodoObject({ data, onClick }) {
     var ongoing = (
         <div className='object-box' style={{ height: heightSize }}>
             <OngoingContents onClick={() => changeHeight()} date={date} contents={contents} />
-            <OngoingButtonSet onClick={onClick} dataId = {data.id} />
+            <OngoingButtonSet dataId = {data.id} />
         </div>
     )
 
@@ -105,10 +105,10 @@ function CompleteButtonSet() {
 /**
  * 완료된 객체
  */
-function OngoingContents({ date, contents, onClick }) {
+function OngoingContents({ date, contents }) {
 
     return (
-        <div onClick={onClick} className='object-contents'>
+        <div className='object-contents'>
             <p className='contents-date ongoing'>{date}</p>
             <p className='contents-detail ongoing'>{contents}</p>
         </div>
@@ -119,26 +119,13 @@ function OngoingContents({ date, contents, onClick }) {
 /**
  * 진행중인 객채에 대한 버튼들
  */
-function OngoingButtonSet({dataId , onClick}) {
-
-    const URL = 'http://localhost:8000/api/todo/' + dataId + '/';
-
-    // const deleteButtenHandle = (e) => {
-    //     e.preventDefault();
-    //     const axios = require('axios');
-    //     axios.delete(URL)
-    //     .then( () => {
-    //         console.log("delete complete")
-    //     })
-    //     .then( () => {
-    //     })
-    // }
+function OngoingButtonSet() {
 
     return (
         <div className='object-buttons'>
             <a href='#'><CheckIcon fill='#414141' width='23px' height='23px' /></a>
             <a href='#'><EditIcon fill='#414141' width='23px' height='23px' /></a>
-            <Link to='/todo' onClick={onClick}><TrashIcon fill='#414141' width='17px' height='17px' /></Link>
+            <Link to='#'><TrashIcon fill='#414141' width='17px' height='17px' /></Link>
         </div>
     );
 

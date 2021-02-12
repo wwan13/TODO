@@ -23,47 +23,12 @@ function Contents() {
     );
 }
 
-function deleteButtenHandle(dataId) {
-    const URL = 'http://localhost:8000/api/todo/' + dataId + '/';
-    const axios = require('axios');
-    axios.delete(URL)
-    .then( () => {
-        console.log("delete complete")
-    })
-    .then( () => {
-    })
-}
-
 /**
  * todo list 가 나오는 컨텐츠
  */
 function Todo() {
 
     var [datas, setDatas] = useState([]);
-
-    // 컴포넌트가 렌더링 될 때 api 호출을 통해 todo 데이터들을 불러옴
-    useEffect(()  => {
-
-        const fetchDatas = () => {
-            const axios = require('axios');
-            const URL = 'http://localhost:8000/api/todo/'
-
-            // GET 요청
-            axios.get(URL)
-            .then(response => {
-                setDatas(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-            .then(response => {
-            })
-        }
-
-        console.log("rendering todo component")
-        fetchDatas();
-
-    }, [])
 
     return (
         <div className='contents-wrapper'>
@@ -126,25 +91,11 @@ function CreateContents() {
         console.log(inputs)
     };
 
-    const submitButtonHandle = () => {
-        const axios = require('axios')
-        axios.post('http://localhost:8000/api/todo/', inputs)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-        .then(response => {
-
-        })
-    }
-
     return (
-        <form action='http://localhost:8000/api/todo/' method="POST" className="form">
+        <form action='#' method="POST" className="form">
             <CSRFToken />
             <InputBox type="date" name="date" onChange={onChange} required={true}/>
-            <InputBox type="text" placeholder="내용" name="contents" onChange={onChange} required={true} />
+            <InputBox type="text" placeholder="내용" name="contents" required={true} />
             <SubmitButton type="submit" value="만들기" />
         </form >
     );
