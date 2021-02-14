@@ -10,6 +10,13 @@ export const GET_TodoList = () => {
 }
 
 /**
+ * GET http://localhost:8000/api/todo/
+ */
+export const GET_FilteredTodoList = (filter) => {
+    return axios.get(TODO_API_URL + "?filter=" + filter)
+}
+
+/**
  * GET http://localhost:8000/api/todo/{todoId}
  */
 export const GET_TodoObject = (todoId) => {
@@ -33,8 +40,8 @@ export const DELETE_TodoObject = (todoId) => {
 /**
  * PUT http://localhost:8000/api/todo/{todoId}
  */
-export const PUT_TodoObject = (todoId, todoData) => {
-    return axios.put(TODO_API_URL + todoId + "/", todoData)
+export const PATCH_TodoObject = (todoId, todoData) => {
+    return axios.patch(TODO_API_URL + todoId + "/", todoData)
 }
 
 /**

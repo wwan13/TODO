@@ -13,7 +13,7 @@ import CSRFToken from '../../middleware/CSRFToken'
 
 import {useHistory} from 'react-router-dom'
 
-import {GET_TodoList, POST_TodoObject, GET_TodoObject, PUT_TodoObject} from '../../apis/todoApi'
+import {GET_TodoList, POST_TodoObject, GET_TodoObject, PATCH_TodoObject, GET_FilteredTodoList} from '../../apis/todoApi'
 import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL, TODO_UPDATE_URL} from '../../urls/urls'
 
 /**
@@ -46,9 +46,16 @@ function Todo() {
         })
     }, [])
 
+    // filter 버튼 눌렀을 경우 동작
+    const handleFilterButton = (e) => {
+        GET_FilteredTodoList(e.target.id).then(response => {
+            setDatas(response.data)
+        })
+    }
+
     return (
         <div className='contents-wrapper'>
-            <SortNav />
+            <SortNav onClick={handleFilterButton}/>
             <div className='todo-box'>
                 {datas.map(data => (
                     <TodoObject setDatas={setDatas} data={data} key={data.id} />
@@ -143,11 +150,9 @@ function UpdateContents({match}) {
         let data = new FormData(e.target);
 
         // POST 메소드 호풀
-        PUT_TodoObject(dataId,data).then(response => {
-            console.log(response)
-
+        PATCH_TodoObject(dataId,data).then(response => {
             // 메인 화면으로 화면 이동
-            // history.push("/")
+            history.push("/")
         }).catch(error => {
             console.log(error)
         })

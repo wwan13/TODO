@@ -119,7 +119,6 @@ function CompleteButtonSet({dataId, setDatas}) {
     // 상태를 완료로 바꿔줌
     const handleOngoingButton = () => {
         GET_SetOngoing(dataId).then(response => {
-            console.log(response.data)
             setNewDatasets()
         }).catch(error => {
             console.log(error)
@@ -157,7 +156,6 @@ function OngoingButtonSet({dataId, setDatas}) {
     // DELETE 호출 후에 데이터 셋을 새로 바꿔주는 함수
     const setNewDatasets = () => {
         GET_TodoList().then(response => {
-            console.log('set new data sets')
             setDatas(response.data)
         }).catch(error => {
             console.log(error)
@@ -176,7 +174,6 @@ function OngoingButtonSet({dataId, setDatas}) {
     // 상태를 완료로 바꿔줌
     const handleCompleteButton = () => {
         GET_SetComplete(dataId).then(response => {
-            console.log(response.data)
             setNewDatasets()
         }).catch(error => {
             console.log(error)
