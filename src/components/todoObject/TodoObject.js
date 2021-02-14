@@ -8,62 +8,28 @@ import {Link} from 'react-router-dom'
 import {DELETE_TodoObject, GET_TodoList, GET_SetComplete, GET_SetOngoing} from '../../apis/todoApi'
 import {GET_TODO_UPDATE_URL} from '../../urls/urls'
 
-const oneLineSize = 17
+const oneLineSize = 14
 
 /**
  * todo 데이터 하나하나를 출력 해 주는 컴포넌트
  */
 function TodoObject({ data, setDatas }) {
 
-    // 토글이 되어있는지 상태를 나타내는 hooks
-    var [isOnToggle, setToggleState] = useState(false);
-
     var date = data.date;
-
-    // 클릭시 전체 데이터를 출력 해 주기 위한 hook
-    var [heightSize, setHeightSize] = useState("80px")
-
-    var initialContents;
-    // 데이터가 길면 말줄임표를 이용해 짧게 출력
-    if (data.contents.length > oneLineSize) {
-        initialContents = getSlicedContents(data.contents);
-    } else {
-        initialContents = data.contents;
-    }
-
-    // toggle 상태에 따라 데이터를 바꿔주기 위한 hook
-    var [contents, setContents] = useState(initialContents);
-
-    // toggle 상태와 컨텐츠 길이에 따라 클릭시 컨텐트 전체를 보여주는 함수
-    const changeHeight = () => {
-        // 글이 길 경우
-        if (data.contents.length > oneLineSize) {
-            // 토글이 안되어 있으면 크기를 늘림
-            if (!isOnToggle) {
-                setHeightSize("auto");
-                setContents(data.contents);
-                setToggleState(true);
-            } else {
-                setHeightSize("80px");
-                var tmp = getSlicedContents(data.contents);
-                setContents(tmp);
-                setToggleState(false);
-            }
-        }
-    }
+    var contents = data.contents;
 
     // 완료시의 컴포넌트
     var complete = (
-        <div className='object-box' style={{ height: heightSize }}>
-            <CompleteContents onClick={() => changeHeight()} date={date} contents={contents} />
+        <div className='object-box'>
+            <CompleteContents date={data.date} contents={data.contents} />
             <CompleteButtonSet setDatas={setDatas} dataId={data.id} />
         </div>
     )
 
     // 진행중인 컴포넌트
     var ongoing = (
-        <div className='object-box' style={{ height: heightSize }}>
-            <OngoingContents onClick={() => changeHeight()} date={date} contents={contents} />
+        <div className='object-box'>
+            <OngoingContents date={data.date} contents={data.contents} />
             <OngoingButtonSet setDatas={setDatas} dataId={data.id} />
         </div>
     )

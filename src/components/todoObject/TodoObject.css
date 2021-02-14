@@ -1,6 +1,6 @@
 .object-box {
     width: 460px;
-    height: 80px;
+    height: auto;
     background-color: #d5d5d5;
     margin: 20px 30px;
     border-radius: 10px;
