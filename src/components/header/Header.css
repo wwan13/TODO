@@ -1,9 +1,15 @@
-.title-wrapper {
+.title-wrapper,
+.main-title-wrapper {
     width: 520px;
     height: 45px;
     margin-bottom: 20px;
     font-weight: Bold;
     color: #b2b2b2;
+}
+
+.main-title-wrapper {
+    display: flex;
+    justify-content: space-between;
 }
 
 .title {
@@ -21,7 +27,19 @@
 }
 
 .logout-button {
+    display: inline;
     font-size: 25px;
     color: #b2b2b2;
-    margin-left: 140px;
+    /* margin-left: 140px; */
+    background-color: #414141;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    height: 25px;
+    margin-top: 15px;
+}
+
+.info-wrapper {
+    width: 400px;
+    margin: 0px;
 }
