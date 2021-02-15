@@ -14,8 +14,10 @@ import CSRFToken from '../../middleware/CSRFToken'
 import {useHistory} from 'react-router-dom'
 
 import {GET_TodoList, POST_TodoObject, GET_TodoObject, PATCH_TodoObject, GET_FilteredTodoList} from '../../apis/todoApi'
-import {POST_Login} from '../../apis/authApi'
+import {POST_Login, POST_SIGNIN} from '../../apis/authApi'
 import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL, TODO_UPDATE_URL} from '../../urls/urls'
+import {setTokenInSessionStorage, setUsernameInSessionStorage, isLoggedIn} from '../../auth/auth'
+
 
 /**
  * url에 따라 메인 컨텐츠를 바꿔줌
@@ -38,13 +40,21 @@ function Contents() {
  */
 function Todo() {
 
+    const history = useHistory();
+
     var [datas, setDatas] = useState([]);
 
     // 새로 렌더링 될 떄 마다 GET 메소드 호출
     useEffect(() => {
-        GET_TodoList().then(response => {
-            setDatas(response.data)
-        })
+
+        if(!isLoggedIn()) {
+            history.push("/login")
+        } else {
+            GET_TodoList().then(response => {
+                setDatas(response.data)
+            })
+        }
+
     }, [])
 
     // filter 버튼 눌렀을 경우 동작
@@ -71,6 +81,8 @@ function Todo() {
  * 로그인 화면
  */
 function Login() {
+    
+    const history = useHistory();
 
     // login submit 이벤트
     const handleSubmitButton = (e) => {
@@ -80,6 +92,12 @@ function Login() {
 
         POST_Login(data).then(response => {
             console.log(response.data)
+            setTokenInSessionStorage(response.data.key)
+            setUsernameInSessionStorage(data.get('username'))
+            history.push("/")
+        }).catch(error => {
+            console.log(error)
+            alert("아이디 혹은 비밀번호가 일치하지 않습니다.")
         })
     }
 
@@ -97,12 +115,35 @@ function Login() {
  * 회원가입 화면
  */
 function Signin() {
+
+    const history = useHistory();
+
+    // signin submit 이벤트
+    const handleSubmitButton = (e) => {
+
+        e.preventDefault();
+        let data = new FormData(e.target);
+
+        if(data.get('password1') !== data.get('password2')) {
+            alert("비밀번호가 서로 일치하지 않습니다.")
+            return;
+        }
+
+        POST_SIGNIN(data).then(response => {
+            console.log(response.data)
+            setTokenInSessionStorage(response.data.key)
+            setUsernameInSessionStorage(data.get('username'))
+            history.push("/")
+        }).catch(error => {
+            alert(error)
+        })
+    }
+
     return (
-        <form action="#" method="post" className="form">
-            <InputBox type="text" placeholder="이름" name="username" />
-            <InputBox type="text" placeholder="아이디" name="id" />
-            <InputBox type="password" placeholder="비밀번호" name="password" />
-            <InputBox type="password" placeholder="비밀번호 확인" name="passwordConfirm" />
+        <form onSubmit={handleSubmitButton} className="form">
+            <InputBox type="text" placeholder="아이디" name="username" />
+            <InputBox type="password" placeholder="비밀번호" name="password1" />
+            <InputBox type="password" placeholder="비밀번호 확인" name="password2" />
             <SubmitButton type="submit" value="회원가입" />
         </form>
     );
@@ -114,6 +155,12 @@ function Signin() {
 function CreateContents() {
 
     const history = useHistory();
+
+    useEffect(() => {
+        if(!isLoggedIn()) {
+            history.push("/login")
+        }
+    }, [])
 
     // submit 이벤트
     const handleSubmitButton = (e) => {
