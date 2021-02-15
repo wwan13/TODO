@@ -14,6 +14,7 @@ import CSRFToken from '../../middleware/CSRFToken'
 import {useHistory} from 'react-router-dom'
 
 import {GET_TodoList, POST_TodoObject, GET_TodoObject, PATCH_TodoObject, GET_FilteredTodoList} from '../../apis/todoApi'
+import {POST_Login} from '../../apis/authApi'
 import {MAIN_URL, TODO_CREATE_URL, LOGIN_URL, SIGNIN_URL, TODO_UPDATE_URL} from '../../urls/urls'
 
 /**
@@ -70,9 +71,21 @@ function Todo() {
  * 로그인 화면
  */
 function Login() {
+
+    // login submit 이벤트
+    const handleSubmitButton = (e) => {
+
+        e.preventDefault();
+        let data = new FormData(e.target);
+
+        POST_Login(data).then(response => {
+            console.log(response.data)
+        })
+    }
+
     return (
-        <form action="#" method="post" className="form">
-            <InputBox type="text" placeholder="아이디" name="id" />
+        <form onSubmit={handleSubmitButton} className="form">
+            <InputBox type="text" placeholder="아이디" name="username" />
             <InputBox type="password" placeholder="비밀번호" name="password" />
             <SubmitButton type="submit" value="로그인" />
             <Link className="signin-link" to="/signin">회원가입</Link>
