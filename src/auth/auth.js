@@ -15,11 +15,11 @@ export const setUsernameInSessionStorage = (username) => {
     window.sessionStorage.setItem('username', username)
 }
 
-export const getUsernameInSessionStorage = (username) => {
+export const getUsernameInSessionStorage = () => {
     return window.sessionStorage.getItem('username')
 }
 
-export const removeUsernameInSessionStorage = (username) => {
+export const removeUsernameInSessionStorage = () => {
     window.sessionStorage.removeItem('username')
 }
 
