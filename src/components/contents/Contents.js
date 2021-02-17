@@ -91,10 +91,10 @@ function Login() {
         let data = new FormData(e.target);
 
         POST_Login(data).then(response => {
-            console.log(response.data)
             setTokenInSessionStorage(response.data.key)
             setUsernameInSessionStorage(data.get('username'))
             history.push("/")
+
         }).catch(error => {
             console.log(error)
             alert("아이디 혹은 비밀번호가 일치하지 않습니다.")
@@ -130,7 +130,6 @@ function Signin() {
         }
 
         POST_SIGNIN(data).then(response => {
-            console.log(response.data)
             setTokenInSessionStorage(response.data.key)
             setUsernameInSessionStorage(data.get('username'))
             history.push("/")
