@@ -91,7 +91,6 @@ function Login() {
         let data = new FormData(e.target);
 
         POST_Login(data).then(response => {
-            console.log(response.data.key)
             setTokenInSessionStorage(response.data.key)
             setUsernameInSessionStorage(data.get('username'))
             history.push("/")

@@ -10,7 +10,6 @@ const getHeaderConfig = () => {
             'Authorization' : authorization
         }
     }
-
     return HEADER_CONFIG
 }
 
