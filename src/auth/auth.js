@@ -1,5 +1,6 @@
 
 export const setTokenInSessionStorage = (token) => {
+    console.log(token)
     window.sessionStorage.setItem('Token', token)
 }
 
